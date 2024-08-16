@@ -47,10 +47,11 @@ export const RightSidebar = ({user, transactions, banks}: RightSidebarProps) => 
                             account={banks[0]}
                             userName={`${user.firstName} ${user.lastName}`}
                             showBalance={false}
+                            
                         />
                     </div>
                     {banks[1] && (
-                        <div className='absolue right-0 top-8 z-0 w-[90%]'>
+                        <div className='absolute right-[-20px] top-[-20px] z-0 w-[90%]'>
                             <BankCard
                                  key={banks[1].$id}
                                  account={banks[1]}

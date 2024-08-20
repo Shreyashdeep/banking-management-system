@@ -1,7 +1,9 @@
 import Authform from '@/components/Authform'
-import React from 'react'
+import { getLoggedInUser } from '@/lib/actions/user.actions';
 
-function SignUp() {
+const SignUp=async() =>{
+  const loggedInUser= await getLoggedInUser();
+  console.log(loggedInUser)
   return (
     <search className='flex-centre size-full max-sm:px-6'>
        <Authform type="sign-up"/>

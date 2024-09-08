@@ -19,11 +19,12 @@ import {
 import { Input } from "@/components/ui/input";
 import Custominput from "./Custominput";
 import { authFormSchema } from "@/lib/utils";
-import { Loader, Loader2 } from "lucide-react";
+import { Loader, Loader2, Pin } from "lucide-react";
 import { emitWarning } from "process";
 import { useRouter } from "next/navigation";
 import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
 import PlaidLink from "./PlaidLink";
+import { PassThrough } from "stream";
 
 const Authform = ({ type }: { type: string }) => {
   const router=useRouter();
@@ -45,8 +46,21 @@ const Authform = ({ type }: { type: string }) => {
     setIsLoading(true);
     try {
       // sign up using appwrite and create plaid token
+      
       if (type === "sign-up") {
-        const newUser= await signUp(data);
+        const userData= {
+          firstName: data.firstName!,
+          lastName: data.lastName!,
+          address1: data.address1!,
+          city: data.city!,
+          state: data.state!,
+          postalCode: data.postalCode!,
+          dateOfBirth: data.dateOfBirth!,
+          ssn: data.ssn!,
+          email:  data.email,
+          password: data.password
+        }
+        const newUser= await signUp(userData);
         setUser(newUser);
       }
       if (type === "sign-in") {
@@ -87,11 +101,11 @@ const Authform = ({ type }: { type: string }) => {
           </h1>
         </div>
       </header>
-      {/* {user ? ( */}
+      {user ? (
         <div className="flex flex-col gap-4">
           <PlaidLink user={user} variant="primary"/>
         </div>
-      {/* ) : ( */}
+      ) : (
         <>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -133,7 +147,7 @@ const Authform = ({ type }: { type: string }) => {
                     />
                     <Custominput
                       control={form.control}
-                      name="pin_code"
+                      name="postalCode"
                       label="Pin Code"
                       placeholder="ex: 62126"
                     />
@@ -147,8 +161,8 @@ const Authform = ({ type }: { type: string }) => {
                     />
                     <Custominput
                       control={form.control}
-                      name="adhar_number"
-                      label="Adhar Number"
+                      name="ssn"
+                      label="Adhar umber"
                       placeholder="Ex: 1111 1111 1111"
                     />
                   </div>
@@ -197,7 +211,7 @@ const Authform = ({ type }: { type: string }) => {
             </Link>
           </footer>
         </>
-      {/* )} */}
+      )} 
     </section>
   );
 };

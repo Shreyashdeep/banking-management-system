@@ -134,7 +134,7 @@ declare type NewDwollaCustomerParams = {
   state: string;
   postalCode: string;
   dateOfBirth: string;
-  ssn:string;
+  ssn: string;
 };
 
 declare interface CreditCardProps {
@@ -211,7 +211,7 @@ declare interface TotlaBalanceBoxProps {
 
 declare interface FooterProps {
   user: User;
-  type?: 'mobile' | 'desktop';
+  type?: "mobile" | "desktop";
 }
 
 declare interface RightSidebarProps {

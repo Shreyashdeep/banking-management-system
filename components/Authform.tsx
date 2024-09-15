@@ -143,7 +143,7 @@ const Authform = ({ type }: { type: string }) => {
                       control={form.control}
                       name="state"
                       label="State"
-                      placeholder="Example: Delhi"
+                      placeholder="Example: DL"
                     />
                     <Custominput
                       control={form.control}
@@ -157,13 +157,13 @@ const Authform = ({ type }: { type: string }) => {
                       control={form.control}
                       name="dateOfBirth"
                       label="Date of Birth"
-                      placeholder="dd-mm-yyyy"
+                      placeholder="yyyy-mm-dd"
                     />
                     <Custominput
                       control={form.control}
                       name="ssn"
-                      label="Adhar umber"
-                      placeholder="Ex: 1111 1111 1111"
+                      label="SSN"
+                      placeholder="1234 (FOUR DIGIT) "
                     />
                   </div>
                 </>
